@@ -1,0 +1,9 @@
+git checkout -b new-branch
+
+** do some work **
+
+git add
+git commit -m
+git checkout master
+git merge new-branch
+git push origin master

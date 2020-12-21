@@ -12,132 +12,118 @@ from Centaur import Centaur
 
 
 class TestCentaur(unittest.TestCase):
+    
+    def setUp(self):
+        self.centaur = Centaur("George", "Palomino")
 
     def test_exists_and_has_attributes(self):
-        centaur = Centaur("George", "Palomino")
-        self.assertTrue(isinstance(centaur, Centaur))
-        self.assertEqual(centaur.name, "George")
-        self.assertEqual(centaur.breed, "Palomino")
+        self.assertTrue(isinstance(self.centaur, Centaur))
+        self.assertEqual(self.centaur.name, "George")
+        self.assertEqual(self.centaur.breed, "Palomino")
 
 
     def test_has_excellent_bow_skills(self):
-        centaur = Centaur("George", "Palomino")
-        self.assertEqual(centaur.shoot(), "Twang!!!")
+        self.assertEqual(self.centaur.shoot(), "Twang!!!")
 
 
     def test_makes_horse_sound_when_runs(self):
-        centaur = Centaur("George", "Palomino")
-        self.assertEqual(centaur.run(), "Clop clop clop clop!!!")
+        self.assertEqual(self.centaur.run(), "Clop clop clop clop!!!")
 
 
     def test_not_cranky_when_created(self):
-        centaur = Centaur("George", "Palomino")
-        self.assertFalse(centaur.cranky)
+        self.assertFalse(self.centaur.cranky)
 
 
     def test_standing_when_created(self):
-        centaur = Centaur("George", "Palomino")
-        self.assertTrue(centaur.standing)
+        self.assertTrue(self.centaur.standing)
 
 
     def test_after_running_or_shooting_bow_three_times_it_gets_cranky(self):
-        centaur = Centaur("George", "Palomino")
-        self.assertFalse(centaur.cranky)
-        centaur.shoot()
-        centaur.run()
-        centaur.shoot()
-        centaur.ran_or_shot_three_times()
-        self.assertTrue(centaur.cranky)
+        self.assertFalse(self.centaur.cranky)
+        self.centaur.shoot()
+        self.centaur.run()
+        self.centaur.shoot()
+        self.centaur.ran_or_shot_three_times()
+        self.assertTrue(self.centaur.cranky)
 
 
     def test_wont_shoot_if_cranky(self):
-        centaur = Centaur("George", "Palomino")
-        centaur.shoot()
-        centaur.run()
-        centaur.shoot()
-        centaur.ran_or_shot_three_times()
-        self.assertTrue(centaur.cranky)
-        self.assertEqual(centaur.shoot(), "NO!")
+        self.centaur.shoot()
+        self.centaur.run()
+        self.centaur.shoot()
+        self.centaur.ran_or_shot_three_times()
+        self.assertTrue(self.centaur.cranky)
+        self.assertEqual(self.centaur.shoot(), "NO!")
 
 
     def test_wont_run_if_cranky(self):
-        centaur = Centaur("George", "Palomino")
-        centaur.shoot()
-        centaur.run()
-        centaur.shoot()
-        centaur.ran_or_shot_three_times()
-        self.assertTrue(centaur.cranky)
-        self.assertEqual(centaur.run(), "NO!")
+        self.centaur.shoot()
+        self.centaur.run()
+        self.centaur.shoot()
+        self.centaur.ran_or_shot_three_times()
+        self.assertTrue(self.centaur.cranky)
+        self.assertEqual(self.centaur.run(), "NO!")
 
 
     def test_wont_sleep_if_standing(self):
-        centaur = Centaur("George", "Palomino")
-        self.assertEqual(centaur.sleep(), "NO!")
+        self.assertEqual(self.centaur.sleep(), "NO!")
 
 
     def test_after_laying_its_not_standing(self):
-        centaur = Centaur("George", "Palomino")
-        centaur.lay_down()
-        self.assertFalse(centaur.standing)
-        self.assertTrue(centaur.laying)
+        self.centaur.lay_down()
+        self.assertFalse(self.centaur.standing)
+        self.assertTrue(self.centaur.laying)
 
 
     def test_when_laying_it_cant_shoot(self):
-        centaur = Centaur("George", "Palomino")
-        centaur.lay_down()
-        self.assertEqual(centaur.shoot(), "NO!")
+        self.centaur.lay_down()
+        self.assertEqual(self.centaur.shoot(), "NO!")
 
 
     def test_when_laying_it_cant_run(self):
-        centaur = Centaur("George", "Palomino")
-        centaur.lay_down()
-        self.assertEqual(centaur.run(), "NO!")
+        self.centaur.lay_down()
+        self.assertEqual(self.centaur.run(), "NO!")
 
 
     def test_it_can_stand_up(self):
-        centaur = Centaur("George", "Palomino")
-        centaur.lay_down()
-        centaur.stand_up()
-        self.assertFalse(centaur.laying)
-        self.assertTrue(centaur.standing)
+        self.centaur.lay_down()
+        self.centaur.stand_up()
+        self.assertFalse(self.centaur.laying)
+        self.assertTrue(self.centaur.standing)
 
 
     def test_not_cranky_after_sleeping(self):
-        centaur = Centaur("George", "Palomino")
-        centaur.shoot()
-        centaur.run()
-        centaur.shoot()
-        centaur.ran_or_shot_three_times()
-        self.assertTrue(centaur.cranky)
+        self.centaur.shoot()
+        self.centaur.run()
+        self.centaur.shoot()
+        self.centaur.ran_or_shot_three_times()
+        self.assertTrue(self.centaur.cranky)
 
-        centaur.lay_down()
-        centaur.sleep()
-        self.assertFalse(centaur.cranky)
+        self.centaur.lay_down()
+        self.centaur.sleep()
+        self.assertFalse(self.centaur.cranky)
 
 
     def test_becomes_rested_after_drinking_potion(self):
-        centaur = Centaur("George", "Palomino")
-        centaur.drink_potion()
-        self.assertTrue(centaur.rested)
+        self.centaur.drink_potion()
+        self.assertTrue(self.centaur.rested)
 
 
     def test_can_only_drink_if_standing(self):
-        centaur = Centaur("George", "Palomino")
-        centaur.lay_down()
-        self.assertEqual(centaur.drink_potion(), "NO!")
-        self.assertFalse(centaur.rested)
+        self.centaur.lay_down()
+        self.assertEqual(self.centaur.drink_potion(), "NO!")
+        self.assertFalse(self.centaur.rested)
 
-        centaur.stand_up()
-        centaur.drink_potion()
-        self.assertTrue(centaur.rested)
+        self.centaur.stand_up()
+        self.centaur.drink_potion()
+        self.assertTrue(self.centaur.rested)
 
 
     def test_gets_sick_if_drinks_while_rested(self):
-        centaur = Centaur("George", "Palomino")
-        centaur.stand_up()
-        centaur.drink_potion()
-        centaur.drink_potion()
-        self.assertTrue(centaur.sick)
+        self.centaur.stand_up()
+        self.centaur.drink_potion()
+        self.centaur.drink_potion()
+        self.assertTrue(self.centaur.sick)
 
 
 if __name__ == "__main__":
